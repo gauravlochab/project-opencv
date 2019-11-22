@@ -49,7 +49,7 @@ while True:
         cv2.drawContours(frame, [mouthHull], -1, (0, 255, 0), 1)
        
 
-        if mar <= .3 or mar > .38 :
+        if mar <= .3 or mar > .40 :
             COUNTER += 1
         else:
             if COUNTER >= 15:
