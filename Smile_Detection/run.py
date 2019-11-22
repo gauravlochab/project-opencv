@@ -49,8 +49,9 @@ while True:
         cv2.drawContours(frame, [mouthHull], -1, (0, 255, 0), 1)
        
 
-        if mar <= .3 or mar > .40 :
+        if mar <= .25 or mar > .40 :
             COUNTER += 1
+            cv2.putText(frame, "SMILE", (200,150), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
         else:
             if COUNTER >= 15:
                 TOTAL += 1
@@ -58,13 +59,16 @@ while True:
                 time.sleep(.3)
 
             COUNTER = 0
-
-        cv2.putText(frame, "MAR: {}".format(mar), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
-
-    cv2.imshow("Frame", frame)
+        try:
+            cv2.putText(frame, "MAR: {}".format(mar), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+            cv2.imshow("Frame", frame)
+            
+        except:
+            continue
     key2 = cv2.waitKey(1) & 0xFF
     if key2 == ord('q'):
         break
+    
 
 
 vs.release()
